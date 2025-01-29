@@ -3,11 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="reqres.services.UserService">
+      <class name="reqres.services.UserService2">
         <methods>
+          <include name="createUserWithRequestBodyAndHeaderTest"/>
+          <include name="setRequestSpecification"/>
+          <include name="updateUserWithRequestBodyAndHeaderTest"/>
           <include name="partialUpdateUserWithRequestBodyAndHeaderTest"/>
+          <include name="setBasePath"/>
         </methods>
-      </class> <!-- reqres.services.UserService -->
+      </class> <!-- reqres.services.UserService2 -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
