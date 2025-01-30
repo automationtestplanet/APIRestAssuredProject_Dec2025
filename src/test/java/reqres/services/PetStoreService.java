@@ -17,7 +17,6 @@ public class PetStoreService {
 	
 	@Test
 	public void getListOfUsers() {
-	
 		
 		Response res = RestAssured.given().auth().basic("test", "abc123").queryParam("status", "available").when().get("/v2/pet/findByStatus").then()
 				.log().ifValidationFails()
