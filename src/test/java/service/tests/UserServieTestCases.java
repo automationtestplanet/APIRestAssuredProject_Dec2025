@@ -14,10 +14,7 @@ import io.restassured.specification.RequestSpecification;
 import service.utils.ReadDataFromExtrenalFiles;
 import services.UserService;
 
-public class UserServieTestCases extends ServicceTestsBaseClass {
-
-	RequestSpecification reqSpec = RestAssured.given().baseUri(baseUrl).header("Accept", "*/*")
-			.contentType(ContentType.JSON).log().ifValidationFails();
+public class UserServieTestCases extends ServiceTestsBaseClass {
 
 	UserService userService = new UserService();
 
@@ -32,21 +29,23 @@ public class UserServieTestCases extends ServicceTestsBaseClass {
 
 	@Test
 	public void testCreateUserEndpoint() {
-		JSONObject jObject = ReadDataFromExtrenalFiles.readDataFromJson("");
+		JSONObject jObject = ReadDataFromExtrenalFiles.readDataFromJson(testDataPath + "CreateUser.json");
 		String requestBody = jObject.toString();
-		Map<String, String> createUsersResponse = userService.createUser(reqSpec, requestBody, 200);
+		Map<String, String> createUsersResponse = userService.createUser(reqSpec, requestBody, 201);
 		Assert.assertEquals(jObject.get("name").toString(), createUsersResponse.get("name"));
 		Assert.assertEquals(jObject.get("job").toString(), createUsersResponse.get("job"));
-
 	}
 
-//	@Test
-//	public void testUpdateUserEndpoint() {
-//		Map<String, String> queryParams = new HashMap<>();
-//		queryParams.put("page", "2");
-//		List<Map<String, Object>> listOfUsersResponse = userService.getListOfUsers(reqSpec, queryParams, 200, "data");
-//		Assert.assertTrue(listOfUsersResponse.size() > 0);
-//	}
+	@Test
+	public void testUpdateUserEndpoint() {
+		Map<String, String> pathParam = new HashMap<>();
+		pathParam.put("id", "2");
+		JSONObject jObject = ReadDataFromExtrenalFiles.readDataFromJson(testDataPath + "UpdateUser.json");
+		String requestBody = jObject.toString();
+		Map<String, String> updateUsersResponse = userService.updateUser(reqSpec, pathParam, requestBody, 200);
+		Assert.assertEquals(jObject.get("name").toString(), updateUsersResponse.get("name"));
+		Assert.assertEquals(jObject.get("job").toString(), updateUsersResponse.get("job"));
+	}
 //
 //	@Test
 //	public void testPartialUpdateUserEndpoint() {

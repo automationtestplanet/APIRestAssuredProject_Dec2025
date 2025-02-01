@@ -7,13 +7,11 @@ import org.json.simple.parser.JSONParser;
 
 public class ReadDataFromExtrenalFiles {
 
-
 	public static JSONObject readDataFromJson(String filePath) {
 		try {
 			JSONParser jParse = new JSONParser();
 
-			FileReader filereaderStream = new FileReader(
-					System.getProperty("user.dir") +  filePath);
+			FileReader filereaderStream = new FileReader(System.getProperty("user.dir") + filePath);
 
 			JSONObject jObject = (JSONObject) jParse.parse(filereaderStream);
 			return jObject;

@@ -19,4 +19,8 @@ public class ApplicationProperties {
 					.println("Exception Occured while reading the data from Application properties: " + e.getMessage());
 		}
 	}
+
+	public static String getProperty(String propertyName) {
+		return applicationProperties.getProperty(propertyName);
+	}
 }

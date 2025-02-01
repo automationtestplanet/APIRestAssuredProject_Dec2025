@@ -20,7 +20,7 @@ public class UserService extends RestMethods {
 
 	public Map<String, String> updateUser(RequestSpecification rs, Map<String, String> pathParams, String requestBody,
 			int statusCode) {
-		return (Map<String, String>) put(rs, endPoint, pathParams, requestBody, statusCode).extract().as(Map.class);
+		return (Map<String, String>) putWithPathParams(rs, endPoint, pathParams, requestBody, statusCode).extract().as(Map.class);
 	}
 
 	public Map<String, String> partialUpdateUser(RequestSpecification rs, Map<String, String> pathParams,
